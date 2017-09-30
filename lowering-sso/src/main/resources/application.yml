@@ -1,0 +1,38 @@
+server:
+  port: 8102
+  context-path: /sso
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8101/eureka/
+
+spring:
+  application:
+    name: lowering-sso
+  aop:
+    proxy-target-class: true
+    
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/lowering-cloud?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    show-sql: true
+    
+security:
+  basic:
+    enabled: false
+    
+    
+    
