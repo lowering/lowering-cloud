@@ -13,5 +13,6 @@ eureka:
     register-with-eureka: false
     
 security:
+  sessions: stateless
   user:
     password: 123456

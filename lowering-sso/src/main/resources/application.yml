@@ -29,10 +29,17 @@ spring:
       ddl-auto: update
     open-in-view: true
     show-sql: true
+  rabbitmq:
+    username: admin
+    password: admin
     
 security:
   basic:
     enabled: false
+
+  oauth2:
+    resource:
+      filter-order: 3
     
     
     

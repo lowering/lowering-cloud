@@ -29,21 +29,24 @@ spring:
       ddl-auto: update
     open-in-view: true
     show-sql: true
+  rabbitmq:
+    username: admin
+    password: admin
     
 security:
-  sessions: always
+  sessions: stateless
   basic:
     enabled: false
   oauth2:
     sso:
-      login-path: /sso/login
+      login-path: /login
     client:
       client-id: swms
       client-secret: swms
       access-token-uri: http://localhost:8102/sso/oauth/token
       user-authorization-uri: http://localhost:8102/sso/oauth/authorize
     resource:
-      user-info-uri: http://localhost:8102/sso/me
+      user-info-uri: http://localhost:8102/sso/api/me
     
     
     
