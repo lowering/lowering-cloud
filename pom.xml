@@ -62,8 +62,10 @@
 
 
 	<modules>
+		<module>lowering-common</module>
 		<module>lowering-sso</module>
 		<module>lowering-swms</module>
 		<module>lowering-registry</module>
+		<module>lowering-account</module>
 	</modules>
 </project>

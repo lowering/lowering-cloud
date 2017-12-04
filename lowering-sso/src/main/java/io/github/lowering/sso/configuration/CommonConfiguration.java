@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-@Configuration
+//@Configuration
 public class CommonConfiguration {
 
     @Bean

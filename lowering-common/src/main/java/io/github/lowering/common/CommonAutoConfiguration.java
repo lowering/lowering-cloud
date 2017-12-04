@@ -1,27 +1,18 @@
 package io.github.lowering.common;
 
+import feign.RequestInterceptor;
 import io.github.lowering.common.oauth.listener.OAuth2SsoListener;
-import io.github.lowering.common.session.SessionContextHolder;
-import io.github.lowering.common.session.listener.HttpSessionBindingListener;
-import io.github.lowering.common.session.listener.HttpSessionCreatedListener;
-import io.github.lowering.common.session.listener.HttpSessionDestroyedListener;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.event.EventListener;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.session.HttpSessionCreatedEvent;
-import org.springframework.security.web.session.HttpSessionDestroyedEvent;
-
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionIdListener;
-import java.util.Objects;
+import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
+import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
 @Configuration
 @ServletComponentScan
@@ -40,29 +31,19 @@ public class CommonAutoConfiguration {
     }
 
     @Configuration
-    protected static class SessionContextConfiguration {
+    @ConditionalOnClass(FeignClient.class)
+    protected static class CustomFeignClientsConfiguration {
 
         @Bean
-        public SessionContextHolder sessionContextHolder(){
-            return SessionContextHolder.getInstance();
+        @ConfigurationProperties(prefix = "security.oauth2.client")
+        public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
+            return new ClientCredentialsResourceDetails();
         }
 
         @Bean
-        public HttpSessionBindingListener httpSessionBindingListener(){
-            return new HttpSessionBindingListener();
+        public RequestInterceptor oauth2FeignRequestInterceptor(){
+            return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());
         }
-        @Bean
-        public HttpSessionCreatedListener httpSessionCreatedListener(){
-            return new HttpSessionCreatedListener();
-        }
-        @Bean
-        public HttpSessionDestroyedListener httpSessionDestroyedListener(){
-            return new HttpSessionDestroyedListener();
-        }
-
     }
-
-
-
 
 }

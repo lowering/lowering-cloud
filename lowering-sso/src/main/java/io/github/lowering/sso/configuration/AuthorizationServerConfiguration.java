@@ -42,7 +42,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 					.withClient("swms")
 			        .secret("swms")
 			        .authorizedGrantTypes("authorization_code", "refresh_token", "password")
-			        .scopes("openid");
+			        .scopes("openid")
+					.and()
+					.withClient("account")
+			        .secret("account")
+			        .authorizedGrantTypes("client_credentials", "refresh_token")
+			        .scopes("server")
+					.and()
+					.withClient("sso")
+					.secret("sso")
+					.authorizedGrantTypes("client_credentials", "refresh_token")
+					.scopes("server");
 	}
 	
 }

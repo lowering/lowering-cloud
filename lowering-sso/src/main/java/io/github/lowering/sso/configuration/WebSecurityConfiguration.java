@@ -27,7 +27,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		super.configure(http);
+//		super.configure(http);
+//		http.authorizeRequests().antMatchers("/test").permitAll();
+		http.authorizeRequests().antMatchers("/test").permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.formLogin().and()
+				.httpBasic().disable();
 		http.logout();
 	}
 

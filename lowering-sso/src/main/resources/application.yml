@@ -36,9 +36,16 @@ spring:
 security:
   basic:
     enabled: false
-
   oauth2:
+    client:
+      client-id: sso
+      client-secret: sso
+      access-token-uri: http://localhost:8102/sso/oauth/token
+      grant-type: client_credentials
+      scope: server
+
     resource:
+      user-info-uri: http://localhost:8102/sso/api/me
       filter-order: 3
     
     
