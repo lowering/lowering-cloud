@@ -8,6 +8,24 @@ eureka:
     service-url:
       defaultZone: http://localhost:8101/eureka/
 
+spring:
+  application:
+    name: lowering-account
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/lowering-cloud?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    show-sql: true
+  rabbitmq:
+    username: admin
+    password: admin
+
 security:
   basic:
     enabled: false
@@ -20,8 +38,5 @@ security:
       scope: server
 
     resource:
-      user-info-uri: http://localhost:8102/sso/api/me
+      user-info-uri: http://localhost:8102/sso/me
 
-spring:
-  application:
-    name: lowering-account

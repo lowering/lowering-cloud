@@ -13,10 +13,6 @@ spring:
   aop:
     proxy-target-class: true
     
-  thymeleaf:
-    cache: false
-    mode: HTML5
-    
   datasource:
     username: root
     password: 123456
@@ -29,9 +25,6 @@ spring:
       ddl-auto: update
     open-in-view: true
     show-sql: true
-  rabbitmq:
-    username: admin
-    password: admin
     
 security:
   basic:
@@ -45,8 +38,8 @@ security:
       scope: server
 
     resource:
-      user-info-uri: http://localhost:8102/sso/api/me
       filter-order: 3
+      user-info-uri: http://localhost:8102/sso/me
     
     
     

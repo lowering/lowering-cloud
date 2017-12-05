@@ -1,0 +1,43 @@
+server:
+  port: 8103
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8101/eureka/
+
+spring:
+  application:
+    name: lowering-gateway
+  aop:
+    proxy-target-class: true
+    
+  thymeleaf:
+    cache: false
+    mode: HTML5
+
+zuul:
+  ignored-services: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:
+    lowering-account:
+      path: /account/**
+      strip-prefix: false
+      sensitive-headers:
+    lowering-sso:
+      path: /sso/**
+      strip-prefix: false
+      sensitive-headers:
+
+security:
+  sessions: stateless
+  basic:
+    enabled: false
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8102/sso/me
+    
+    
+    

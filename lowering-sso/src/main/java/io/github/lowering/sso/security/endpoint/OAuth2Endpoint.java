@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OAuth2Endpoint {
 
-	@GetMapping("/api/me")
+	@GetMapping("/me")
 	public Principal me(Principal principal) {
 		return principal;
 	}
