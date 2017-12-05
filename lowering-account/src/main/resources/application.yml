@@ -22,9 +22,6 @@ spring:
       ddl-auto: update
     open-in-view: true
     show-sql: true
-  rabbitmq:
-    username: admin
-    password: admin
 
 security:
   basic:
@@ -33,10 +30,10 @@ security:
     client:
       client-id: account
       client-secret: account
-      access-token-uri: http://localhost:8102/sso/oauth/token
+      access-token-uri: http://localhost:8102/authorize/oauth/token
       grant-type: client_credentials
       scope: server
 
     resource:
-      user-info-uri: http://localhost:8102/sso/me
+      user-info-uri: http://localhost:8102/authorize/me
 

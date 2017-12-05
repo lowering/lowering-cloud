@@ -63,7 +63,7 @@
 
 	<modules>
 		<module>lowering-common</module>
-		<module>lowering-sso</module>
+		<module>lowering-authorize</module>
 		<module>lowering-gateway</module>
 		<module>lowering-registry</module>
 		<module>lowering-account</module>

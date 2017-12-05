@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     service-url:
-      default-zone: http://localhost:8101/eureka/
+      defaultZone: http://localhost:8101/eureka/
 
 spring:
   application:
@@ -26,8 +26,8 @@ zuul:
       path: /account/**
       strip-prefix: false
       sensitive-headers:
-    lowering-sso:
-      path: /sso/**
+    lowering-authorize:
+      path: /authorize/**
       strip-prefix: false
       sensitive-headers:
 
@@ -37,7 +37,7 @@ security:
     enabled: false
   oauth2:
     resource:
-      user-info-uri: http://localhost:8102/sso/me
+      user-info-uri: http://localhost:8102/authorize/me
     
     
     

@@ -13,23 +13,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 @SpringBootApplication
-@EnableResourceServer
 @EnableDiscoveryClient
 @EnableOAuth2Client
 @EnableFeignClients
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableConfigurationProperties
-@Configuration
-public class LoweringAccountApplication extends ResourceServerConfigurerAdapter {
+public class LoweringAccountApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LoweringAccountApplication.class, args);
 	}
 
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/" , "/demo").permitAll()
-				.anyRequest().authenticated();
-	}
 }
