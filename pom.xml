@@ -67,5 +67,6 @@
 		<module>lowering-gateway</module>
 		<module>lowering-registry</module>
 		<module>lowering-account</module>
+		<module>lowering-ui</module>
 	</modules>
 </project>
