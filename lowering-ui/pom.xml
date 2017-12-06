@@ -26,7 +26,7 @@
 		<profile>
 			<id>Windows</id>
 			<properties>
-				<npm>cnpm.cmd</npm>
+				<npm>npm.cmd</npm>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -64,7 +64,7 @@
 							<arguments>
 								<argument>install</argument>
 							</arguments>
-							<workingDirectory>${basedir}/src</workingDirectory>
+							<workingDirectory>${basedir}</workingDirectory>
 						</configuration>
 					</execution>
 
@@ -80,7 +80,7 @@
 								<argument>run</argument>
 								<argument>build</argument>
 							</arguments>
-							<workingDirectory>${basedir}/src</workingDirectory>
+							<workingDirectory>${basedir}</workingDirectory>
 						</configuration>
 					</execution>
 				</executions>
