@@ -68,5 +68,6 @@
 		<module>lowering-authorize</module>
 		<module>lowering-gateway</module>
 		<module>lowering-account</module>
+		<module>lowering-package</module>
 	</modules>
 </project>
