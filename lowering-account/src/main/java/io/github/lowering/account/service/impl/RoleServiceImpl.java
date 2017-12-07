@@ -5,6 +5,7 @@ import io.github.lowering.account.repository.RoleRepository;
 import io.github.lowering.account.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -22,5 +23,11 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public Role findOne(String id) {
         return null;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
+    public Role save(Role role) {
+        return this.roleRepository.save(role);
     }
 }

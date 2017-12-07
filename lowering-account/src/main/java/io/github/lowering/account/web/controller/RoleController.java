@@ -1,12 +1,11 @@
-package io.github.lowering.account.controller;
+package io.github.lowering.account.web.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import io.github.lowering.account.domain.Role;
 import io.github.lowering.account.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/roles")
@@ -16,8 +15,14 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Role>> index(){
+    @JsonView(Role.WithoutRelationJView.class)
+    public Iterable<Role> index(){
         Iterable<Role> roles = this.roleService.findAll();
-        return ResponseEntity.ok(roles);
+        return roles;
+    }
+
+    @PostMapping
+    public void save(@RequestBody Role role){
+        this.roleService.save(role);
     }
 }

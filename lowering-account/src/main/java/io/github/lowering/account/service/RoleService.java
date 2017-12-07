@@ -7,4 +7,5 @@ public interface RoleService {
 
     Iterable<Role> findAll();
     Role findOne(String id);
+    Role save(Role role);
 }
