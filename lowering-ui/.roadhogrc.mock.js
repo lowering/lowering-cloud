@@ -1,4 +1,3 @@
-
 export default {
     "GET /account/users": (req,res) => {
         let users = [{
@@ -54,4 +53,4 @@ export default {
 
         res.send(roles);
     }
-};
+}
