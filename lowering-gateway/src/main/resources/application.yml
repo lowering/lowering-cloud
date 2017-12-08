@@ -15,6 +15,14 @@ spring:
   thymeleaf:
     cache: false
     mode: HTML5
+  resources:
+    static-locations:
+      - classpath:/META-INF/resources/
+      - classpath:/resources/
+      - classpath:/static/
+      - classpath:/public/
+      - classpath:/META-INF/resources/webjars/
+
 
 zuul:
   ignored-services: '*'
@@ -36,8 +44,18 @@ security:
   basic:
     enabled: false
   oauth2:
+    sso:
+      login-path: /authorize/login
+    client:
+      client-id: ui
+      client-secret: ui
+      access-token-uri: http://localhost:8102/authorize/oauth/token
+      user-authorization-uri: http://localhost:8102/authorize/oauth/authorize
+      grant-type: authorization_code
+      authentication-scheme: form
     resource:
       user-info-uri: http://localhost:8102/authorize/me
+
     
     
     
