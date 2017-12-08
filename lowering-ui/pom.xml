@@ -18,7 +18,7 @@
 	</parent>
 
 	<properties>
-		<destDir>${project.build.outputDirectory}/META-INF/resources/webjars</destDir>
+		<destDir>${project.build.outputDirectory}/META-INF/resources/webjars/</destDir>
 		<distDir>${project.basedir}/dist</distDir>
 	</properties>
 
@@ -26,7 +26,7 @@
 		<profile>
 			<id>Windows</id>
 			<properties>
-				<npm>npm.cmd</npm>
+				<npm>cnpm.cmd</npm>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
