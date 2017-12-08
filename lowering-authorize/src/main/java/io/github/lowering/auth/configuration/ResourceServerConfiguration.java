@@ -2,7 +2,9 @@ package io.github.lowering.auth.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -12,6 +14,7 @@ import javax.annotation.PostConstruct;
 
 @Configuration
 @EnableResourceServer
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 2)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(ResourceServerConfiguration.class);
 	
@@ -22,10 +25,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		super.configure(http);
-		LogoutConfigurer configurer = http.getConfigurer(LogoutConfigurer.class);
-		configurer.addLogoutHandler(((request, response, authentication) -> {
-			System.out.println("logout123");
-		}));
+		http.antMatcher("/me").authorizeRequests().anyRequest().authenticated();
 	}
 }

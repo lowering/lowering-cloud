@@ -24,7 +24,6 @@ security:
       scope: server
 
     resource:
-      filter-order: 3
       user-info-uri: http://localhost:8102/authorize/me
     
     
