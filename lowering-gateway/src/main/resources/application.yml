@@ -9,19 +9,10 @@ eureka:
 spring:
   application:
     name: lowering-gateway
-  aop:
-    proxy-target-class: true
     
   thymeleaf:
     cache: false
-    mode: HTML5
-  resources:
-    static-locations:
-      - classpath:/META-INF/resources/
-      - classpath:/resources/
-      - classpath:/static/
-      - classpath:/public/
-      - classpath:/META-INF/resources/webjars/
+    mode: HTML
 
 
 zuul:
@@ -32,29 +23,24 @@ zuul:
   routes:
     lowering-account:
       path: /account/**
-      strip-prefix: false
-      sensitive-headers:
-    lowering-authorize:
-      path: /authorize/**
+      url: http://localhost:8102
       strip-prefix: false
       sensitive-headers:
 
+
 security:
-  sessions: stateless
   basic:
     enabled: false
+
   oauth2:
-    sso:
-      login-path: /authorize/login
     client:
-      client-id: ui
-      client-secret: ui
-      access-token-uri: http://localhost:8102/authorize/oauth/token
-      user-authorization-uri: http://localhost:8102/authorize/oauth/authorize
-      grant-type: authorization_code
-      authentication-scheme: form
+      client-id: gateway
+      client-secret: gateway
+      access-token-uri: http://localhost:8102/account/oauth/token
+      scope: server
+
     resource:
-      user-info-uri: http://localhost:8102/authorize/me
+      user-info-uri: http://localhost:8102/account/me
 
     
     
