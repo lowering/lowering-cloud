@@ -1,7 +1,6 @@
 server:
-  port: 0
+  port: 8102
   context-path: /account
-
 
 eureka:
   client:
@@ -30,10 +29,9 @@ security:
     client:
       client-id: account
       client-secret: account
-      access-token-uri: http://localhost:8102/authorize/oauth/token
+      access-token-uri: http://localhost:8102/account/oauth/token
       grant-type: client_credentials
       scope: server
-
     resource:
-      user-info-uri: http://localhost:8102/authorize/me
+      user-info-uri: http://localhost:8102/account/me
 
