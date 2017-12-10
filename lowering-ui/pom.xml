@@ -26,7 +26,8 @@
 		<profile>
 			<id>Windows</id>
 			<properties>
-				<npm>cnpm.cmd</npm>
+				<npm>npm.cmd</npm>
+                <skip>false</skip>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -36,8 +37,16 @@
 			<id>Linux</id>
 			<properties>
 				<npm>npm</npm>
+                <skip>false</skip>
 			</properties>
 		</profile>
+        <profile>
+            <id>Build</id>
+            <properties>
+                <npm>npm</npm>
+                <skip>true</skip>
+            </properties>
+        </profile>
 	</profiles>
 
 	<build>
@@ -65,7 +74,9 @@
 								<argument>install</argument>
 							</arguments>
 							<workingDirectory>${basedir}</workingDirectory>
+                            <skip>${skip}</skip>
 						</configuration>
+
 					</execution>
 
 					<execution>
@@ -96,9 +107,10 @@
 						</goals>
 						<configuration>
 							<target>
-								<!-- copy dist file -->
+								<!--copy dist file -->
 								<copy todir="${destDir}">
-									<fileset dir="${distDir}"/>
+                                    <fileset dir="${distDir}" includes="*.js"/>
+                                    <fileset dir="${distDir}" includes="*.css"/>
 								</copy>
 							</target>
 						</configuration>
