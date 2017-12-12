@@ -20,9 +20,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.WithoutPasswordJView.class)
-    public Iterable<User> index(){
-        List<User> users = new ArrayList<>();
-        this.userService.findAll().forEach(user -> users.add(user));
+    public Iterable<User> index(@RequestParam(name = "page",defaultValue = "1") int page,@RequestParam(name = "size",defaultValue = "20") int size){
         return this.userService.findAll();
     }
 

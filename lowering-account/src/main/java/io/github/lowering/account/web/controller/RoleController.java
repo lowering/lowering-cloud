@@ -1,6 +1,7 @@
 package io.github.lowering.account.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.github.lowering.account.domain.Id;
 import io.github.lowering.account.domain.Role;
 import io.github.lowering.account.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    @JsonView(Role.WithoutRelationJView.class)
+    @JsonView(Id.WithoutRelationJView.class)
     public Iterable<Role> index(){
         Iterable<Role> roles = this.roleService.findAll();
         return roles;
