@@ -10,8 +10,6 @@ import java.util.Set;
 @Table(name = "roles")
 public class Role extends Id {
 
-    public interface WithoutRelationJView extends JView {};
-
     @Column(length = 100, unique = true, nullable = false)
     @JsonView(WithoutRelationJView.class)
     private String constant;

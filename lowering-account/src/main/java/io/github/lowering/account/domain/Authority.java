@@ -1,5 +1,7 @@
 package io.github.lowering.account.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +11,15 @@ import java.util.Set;
 public class Authority extends Id {
 
     @Column(nullable = false,length = 100)
+    @JsonView(WithoutRelationJView.class)
     private String name;
     @Column(unique = true,nullable = false,length = 200)
+    @JsonView(WithoutRelationJView.class)
     private String constant;
+    @JsonView(WithoutRelationJView.class)
     private Boolean enabled;
     @Column(length = 300)
+    @JsonView(WithoutRelationJView.class)
     private String description;
 
     @ManyToOne

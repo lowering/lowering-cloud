@@ -13,6 +13,8 @@ public abstract class Id implements Serializable{
 
     //JsonView 视图
     public interface JView { };
+    public interface WithoutRelationJView extends JView {};
+    public interface WithRelationJView extends WithoutRelationJView {};
 
     @javax.persistence.Id
     @GenericGenerator(name = "uuid", strategy = "uuid")

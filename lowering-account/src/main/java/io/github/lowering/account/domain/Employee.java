@@ -1,5 +1,6 @@
 package io.github.lowering.account.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,16 +13,22 @@ import java.util.Set;
 public class Employee extends Id {
 
     @Column(nullable = false,length = 100)
+    @JsonView(WithoutRelationJView.class)
     private String name;        //姓名
     @Column(length = 200)
+    @JsonView(WithoutRelationJView.class)
     private String job;         //工作
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonView(WithoutRelationJView.class)
     private Date created;       //入职日期
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonView(WithoutRelationJView.class)
     private Date updated;       //最后修改时间
+    @JsonView(WithoutRelationJView.class)
     private Double salary;      //工资
     @ManyToOne
     @JoinColumn(name = "manager")
+    @JsonView(WithRelationJView.class)
     private Employee manager;    //上级
     @OneToMany(mappedBy = "manager")
     private Set<Employee> employees = new HashSet<>();  //子员工
@@ -30,10 +37,13 @@ public class Employee extends Id {
     @JoinColumn(name = "department_id")
     private Department department;  //所属部门
     @Column(length = 11)
+    @JsonView(WithoutRelationJView.class)
     private String phone;   //电话
     @Column(length = 100)
+    @JsonView(WithoutRelationJView.class)
     private String email;   //邮箱
     @Column(length = 300)
+    @JsonView(WithoutRelationJView.class)
     private String description;     //备注
 
     @OneToMany(mappedBy = "employee")

@@ -1,5 +1,7 @@
 package io.github.lowering.account.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +11,13 @@ import java.util.Set;
 public class Department extends Id {
 
     @Column(nullable = false, length = 200)
+    @JsonView(WithoutRelationJView.class)
     private String name;        //显示名称
     @Column(unique = true,nullable = false, length = 200)
+    @JsonView(WithoutRelationJView.class)
     private String constant;    //唯一键
     @Column(length = 300)
+    @JsonView(WithoutRelationJView.class)
     private String description; //备注
     @ManyToOne
     @JoinColumn(name = "organization_id")
