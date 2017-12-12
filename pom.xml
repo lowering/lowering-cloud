@@ -65,7 +65,6 @@
 		<module>lowering-common</module>
 		<module>lowering-ui</module>
 		<module>lowering-registry</module>
-		<module>lowering-authorize</module>
 		<module>lowering-gateway</module>
 		<module>lowering-account</module>
 		<module>lowering-package</module>
