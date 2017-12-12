@@ -11,6 +11,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -22,6 +23,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.*;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.PostConstruct;
 
@@ -36,9 +38,12 @@ public class LoweringAccountApplication {
 
 	@Configuration
 	@EnableFeignClients
-	protected static class FeignClientConfiguration {
+	protected static class FeignClientConfiguration { }
 
-	}
+	@Configuration
+	@EnableJpaRepositories
+	@EnableTransactionManagement
+	protected static class RepositoryConfiguration { }
 
 	@Configuration
 	@EnableWebSecurity
