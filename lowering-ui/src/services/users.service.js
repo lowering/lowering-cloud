@@ -1,5 +1,5 @@
-import request from '../utils/request';
+import { promise } from '../utils';
 
 export async function findAll() {
-    return request("/account/users");
+    return promise("http://localhost:8103/account/users");
 }
