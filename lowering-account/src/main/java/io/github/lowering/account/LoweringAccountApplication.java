@@ -64,9 +64,9 @@ public class LoweringAccountApplication {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
-					.authorizeRequests().anyRequest().authenticated()
-					.and()
-					.csrf().disable();
+					.authorizeRequests()
+					.anyRequest().authenticated()
+					.and().csrf().disable();
 		}
 
 		@Override
@@ -117,11 +117,6 @@ public class LoweringAccountApplication {
 					.and()
 					.withClient("account")
 					.secret("account")
-					.authorizedGrantTypes("client_credentials", "refresh_token")
-					.scopes("server")
-					.and()
-					.withClient("authorize")
-					.secret("authorize")
 					.authorizedGrantTypes("client_credentials", "refresh_token")
 					.scopes("server")
 					.and()
