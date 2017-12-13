@@ -5,9 +5,7 @@ import { Route, Switch, withRouter, NavLink, Link } from 'dva/router';
 import DocumentTitle from 'react-document-title';
 import { Layout, Button, Menu, Icon, Dropdown, Avatar } from 'antd';
 
-import mixin from '../utils/mixin';
 import { getNavbar, getRoutes } from '../common/navbar';
-import Global from '../models/global';
 import Footer from '../components/footer';
 
 import styles from './generic.layout.less';
@@ -236,5 +234,5 @@ GenericLayout.childContextTypes = {
     mapping: PropTypes.object
 }
 
-export default withRouter(mixin([Global], connect(state => ({ collapsed: state.global.collapsed }))(GenericLayout)));
+export default withRouter(connect(state => ({ collapsed: state.global.collapsed }))(GenericLayout));
 
