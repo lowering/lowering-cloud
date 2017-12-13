@@ -18,8 +18,8 @@ class Roles extends React.PureComponent {
 
         const columns = [{
             title: '角色名',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'rolename',
+            key: 'rolename',
         }, {
             title: '唯一键(KEY)',
             dataIndex: 'constant',
@@ -45,7 +45,7 @@ class Roles extends React.PureComponent {
         return (
             <PageLayout title="角色管理" content="用于提供对角色的各种操作。">
                 <Card bordered={false}>
-                    <Table dataSource={roles.roles} columns={columns} />
+                    <Table dataSource={roles.roles} columns={columns} rowKey='id'/>
                 </Card>
             </PageLayout>
         )

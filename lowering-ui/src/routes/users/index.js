@@ -19,16 +19,16 @@ class Users extends React.PureComponent {
 
         const columns = [{
             title: '姓名',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'username',
+            key: 'username',
         }, {
-            title: '年龄',
-            dataIndex: 'age',
-            key: 'age',
+            title: '性别',
+            dataIndex: 'sex',
+            key: 'sex',
         }, {
-            title: '住址',
-            dataIndex: 'address',
-            key: 'address',
+            title: '邮箱',
+            dataIndex: 'email',
+            key: 'email',
         }];
 
         let { users } = this.props;
@@ -36,7 +36,7 @@ class Users extends React.PureComponent {
         return (
             <PageLayout title="用户管理" content="用于提供对用户的各种操作。">
                 <Card bordered={false}>
-                    <Table dataSource={users.users} columns={columns} />
+                    <Table dataSource={users.users} columns={columns} rowKey='id'/>
                 </Card>
             </PageLayout>
         )
