@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'dva/router';
+import { Link, withRouter } from 'dva/router';
 import {connect} from 'dva';
+import mixin from '../../utils/mixin';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
 import styles from './index.less';
 import logo from '../../assets/logo.svg';
@@ -198,4 +199,4 @@ class Login extends React.PureComponent {
     }
 }
 
-export default connect(({login})=>({login}))(Form.create()(Login));
+export default withRouter(mixin([import('../../models/login')],connect(({login})=>({login}))(Form.create()(Login))));

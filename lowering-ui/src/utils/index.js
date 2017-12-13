@@ -8,6 +8,10 @@ export const REFRESH_TOKEN_KEY = "_refresh_token";
  */
 export function isAuthenticated() {
     let token = obtainToken();
+    return isToken(token);
+}
+
+export function isToken(token){
     if (type(token) === 'string'){
         return /^[\w\d]{8}-[\w\d]{4}-[\w\d]{4}-[\w\d]{4}-[\w\d]{12}$/.test(token);
     }
