@@ -68,7 +68,7 @@ class Login extends React.PureComponent {
 
 
     render (){
-        const { form, login={} } = this.props;
+        const { form, login }  = this.props;
         const { getFieldDecorator } = form;
         const { count, type } = this.state;
 
@@ -199,4 +199,4 @@ class Login extends React.PureComponent {
     }
 }
 
-export default withRouter(mixin([import('../../models/login')],connect(({login})=>({login}))(Form.create()(Login))));
+export default connect(({login})=>({login}))(Form.create()(Login));
