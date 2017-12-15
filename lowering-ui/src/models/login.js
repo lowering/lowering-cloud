@@ -1,5 +1,5 @@
 import { login } from '../services/users.service';
-import { isToken } from '../utils';
+import { isToken,storeToken,removeToken } from '../utils';
 import { routerRedux } from 'dva/router';
 
 export default {
@@ -10,7 +10,6 @@ export default {
     },
     effects: {
         * login({payload},{call,put}){
-            console.log(payload);
             yield put({
                 type: 'changeSubmitting',
                 payload: {
@@ -27,11 +26,21 @@ export default {
             });
             //登录成功
             if (isToken(data['access_token'])) {
-                yield put(routerRedux.push('/'));
+                storeToken(data['access_token']);
+                yield put(routerRedux.push("/"));
+            } else {
+                removeToken();
             }
         },
-        * logout(){
-
+        * logout(_,{put}){
+            yield put({
+                type: 'changeLoginStatus',
+                payload: {
+                    status: false,
+                },
+            });
+            removeToken();
+            yield put(routerRedux.push('/login'));
         }
     },
     reducers: {

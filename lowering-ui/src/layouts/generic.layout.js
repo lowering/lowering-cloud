@@ -25,6 +25,7 @@ class GenericLayout extends React.PureComponent {
         this.selectedKeys = this.selectedKeys.bind(this);
         this.handleOpenChange = this.handleOpenChange.bind(this);
         this.getDocumentTitle = this.getDocumentTitle.bind(this);
+        this.onMenuClick = this.onMenuClick.bind(this);
     }
 
     getChildContext() {
@@ -128,6 +129,15 @@ class GenericLayout extends React.PureComponent {
                 </Menu.Item>
             );
         });
+    }
+
+    onMenuClick = ({ key }) => {
+        console.log(key);
+        if (key === 'logout') {
+            this.props.dispatch({
+                type: 'login/logout',
+            });
+        }
     }
 
     getDocumentTitle() {

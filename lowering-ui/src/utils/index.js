@@ -2,6 +2,8 @@ import fetch from 'dva/fetch';
 
 export const TOKEN_KEY = "_token";
 export const REFRESH_TOKEN_KEY = "_refresh_token";
+export const BASE_URL = "http://localhost:8103";
+
 
 /**
  * 验证是否登录
@@ -49,7 +51,6 @@ function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
-
     const error = new Error(response.statusText);
     error.response = response;
     throw error;
@@ -68,10 +69,10 @@ export function promise(url, options = {}) {
        options.headers = {};
     }
     options.headers["Authorization"] = "Bearer " + obtainToken();
-    options.headers["Content-Type"] = "application/json";
+    options.headers["Content-Type"] = "application/json;charset=utf-8";
     return ajax(url,options);
 }
 export function ajax(url,options) {
     let promise = fetch(url,options);
-    return promise.then(checkStatus).then(parseJSON).then(data => ({data})).catch(err => ({err}));
+    return promise.then(checkStatus).then(parseJSON).then(data => data).catch(err => ({err}));
 }

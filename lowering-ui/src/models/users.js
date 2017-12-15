@@ -20,7 +20,7 @@ export default {
             yield put({
                 type:'findAllSuccess',
                 payload:{
-                    users: data.data
+                    users: data
                 }
             })
         },

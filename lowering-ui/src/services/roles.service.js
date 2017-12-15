@@ -1,5 +1,5 @@
-import { promise } from '../utils';
+import { promise,BASE_URL } from '../utils';
 
 export async function findAll() {
-    return promise("http://localhost:8103//account/roles");
+    return promise(`${BASE_URL}/account/roles`);
 }

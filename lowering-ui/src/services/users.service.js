@@ -1,17 +1,17 @@
-import { promise,ajax } from '../utils';
+import { promise,ajax,BASE_URL } from '../utils';
+import qs from 'qs';
 
 export async function findAll() {
-    return promise("http://localhost:8103/account/users");
+    return promise(`${BASE_URL}/account/users`);
 }
 
 export async function login(params){
-    console.log({...params,"grant_type":"password"});
-    return ajax("http://localhost:8103/account/oauth/token",{
+    return ajax(`${BASE_URL}/account/oauth/token`,{
         method: 'POST',
         headers: {
             "Authorization": "Basic dWk6dWk=",
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: {"username":"admin","password":"admin","grant_type":"password"}
+        body: qs.stringify({...params,"grant_type":"password"})
     })
 }
