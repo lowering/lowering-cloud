@@ -62,7 +62,7 @@
 
 
 	<modules>
-		<module>lowering-common</module>
+		<module>lowering-core</module>
 		<module>lowering-ui</module>
 		<module>lowering-registry</module>
 		<module>lowering-gateway</module>
