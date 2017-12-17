@@ -44,7 +44,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.lowering</groupId>
-			<artifactId>lowering-common</artifactId>
+			<artifactId>lowering-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
