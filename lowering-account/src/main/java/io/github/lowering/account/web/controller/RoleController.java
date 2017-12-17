@@ -6,8 +6,10 @@ import io.github.lowering.account.domain.Role;
 import io.github.lowering.account.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/roles")
 public class RoleController {
@@ -23,7 +25,7 @@ public class RoleController {
     }
 
     @PostMapping
-    public void save(@RequestBody Role role){
+    public void save(@Validated @RequestBody Role role){
         this.roleService.save(role);
     }
 }

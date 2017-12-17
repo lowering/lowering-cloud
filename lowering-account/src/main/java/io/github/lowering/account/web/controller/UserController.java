@@ -3,14 +3,12 @@ package io.github.lowering.account.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.github.lowering.account.domain.User;
 import io.github.lowering.account.service.UserService;
-import io.github.lowering.common.constant.Permissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -25,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void save(@RequestBody User user){
+    public void save(@Validated @RequestBody User user){
         System.out.println(user);
         this.userService.save(user);
     }

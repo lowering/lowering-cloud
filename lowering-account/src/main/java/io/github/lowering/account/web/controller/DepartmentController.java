@@ -5,8 +5,10 @@ import io.github.lowering.account.domain.Department;
 import io.github.lowering.account.domain.Id;
 import io.github.lowering.account.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
@@ -21,7 +23,7 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public void save(@RequestBody Department department){
+    public void save(@Validated @RequestBody Department department){
         departmentService.save(department);
     }
 }

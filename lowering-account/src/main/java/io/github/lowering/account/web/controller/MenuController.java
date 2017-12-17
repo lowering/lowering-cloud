@@ -5,8 +5,10 @@ import io.github.lowering.account.domain.Id;
 import io.github.lowering.account.domain.Menu;
 import io.github.lowering.account.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/menus")
 public class MenuController {
@@ -21,7 +23,7 @@ public class MenuController {
     }
 
     @PostMapping
-    public void save(@RequestBody Menu menu){
+    public void save(@Validated @RequestBody Menu menu){
         menuService.save(menu);
     }
 }

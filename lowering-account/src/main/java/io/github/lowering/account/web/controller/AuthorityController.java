@@ -6,8 +6,10 @@ import io.github.lowering.account.domain.Id;
 import io.github.lowering.account.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/authorities")
 public class AuthorityController {
@@ -23,7 +25,7 @@ public class AuthorityController {
     }
 
     @PostMapping
-    public void save(@RequestBody Authority authority){
+    public void save(@Validated @RequestBody Authority authority){
         authorityService.save(authority);
     }
 }

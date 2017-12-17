@@ -5,8 +5,10 @@ import io.github.lowering.account.domain.Id;
 import io.github.lowering.account.domain.Organization;
 import io.github.lowering.account.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/organizations")
 public class OrganizationController {
@@ -21,7 +23,7 @@ public class OrganizationController {
     }
 
     @PostMapping
-    public void save(@RequestBody Organization organization){
+    public void save(@Validated @RequestBody Organization organization){
         organizationService.save(organization);
     }
 }
