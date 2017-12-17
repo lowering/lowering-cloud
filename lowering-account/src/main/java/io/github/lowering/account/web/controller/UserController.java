@@ -3,7 +3,12 @@ package io.github.lowering.account.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.github.lowering.account.domain.User;
 import io.github.lowering.account.service.UserService;
+import io.github.lowering.core.result.CommonResult;
+import io.github.lowering.core.result.ErrorResult;
+import io.github.lowering.core.result.Result;
+import io.github.lowering.core.result.ValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +28,15 @@ public class UserController {
     }
 
     @PostMapping
-    public void save(@Validated @RequestBody User user){
-        System.out.println(user);
+    public Result save(@Validated @RequestBody User user, BindingResult error){
+        if (error.hasErrors()){
+            ValidationResult result = new ValidationResult(100400,"数据验证错误");
+            error.getFieldErrors().forEach(e->result.setError(e.getField(),e.getDefaultMessage()));
+            return result;
+        }
+
         this.userService.save(user);
+        return new CommonResult<>(100200,user.getId());
     }
 
 }
