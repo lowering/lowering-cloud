@@ -9,10 +9,14 @@ import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequest
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
+import java.util.Properties;
+
 @Configuration
+@ComponentScan
 public class CommonAutoConfiguration {
 
     /**
@@ -40,6 +44,15 @@ public class CommonAutoConfiguration {
         public RequestInterceptor oauth2FeignRequestInterceptor(){
             return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());
         }
+    }
+
+    @Bean
+    public ReloadableResourceBundleMessageSource messageSource(){
+        ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+        source.setBasenames("classpath:messages/message");
+        source.setDefaultEncoding("utf-8");
+        source.setCacheSeconds(120);
+        return source;
     }
 
 }
