@@ -21,35 +21,36 @@ public class User extends Id {
     public interface WithPasswordJView extends WithoutPasswordJView {};
 
     @Column(length = 300)
+    @Length(max = 300, message = "{account.user.description.Length.message}")
     @JsonView(WithoutPasswordJView.class)
     private String description;
 
-    @Email(message = "{account.user.email}")
+    @Email(message = "{account.user.email.message}")
     @Column(length = 100)
     @JsonView(WithoutPasswordJView.class)
     private String email;
 
-    @NotNull(message = "{account.user.enabled.not-null}")
+    @NotNull(message = "{account.user.enabled.NotNull.message}")
     @JsonView(WithoutPasswordJView.class)
     private Boolean enabled;
 
-    @NotNull(message = "{account.user.locked.not-null}")
+    @NotNull(message = "{account.user.locked.NotNull.message}")
     @JsonView(WithoutPasswordJView.class)
     private Boolean locked;
 
-    @NotNull(message = "{account.user.password.not-null}")
-    @Length(message = "{account.user.password.length}")
+    @NotNull(message = "{account.user.password.NotNull.message}")
+    @Length(min = 6, max = 18, message = "{account.user.password.Length.message}")
     @Column(length = 100, nullable = false)
     @JsonView(WithPasswordJView.class)
     private String password;
 
-    @NotNull(message = "{account.user.sex.not-null}")
+    @NotNull(message = "{account.user.sex.NotNull.message}")
     @Enumerated
     @JsonView(WithoutPasswordJView.class)
     private Sex sex;
 
-    @NotBlank(message = "{account.user.username.not-blank}")
-    @Length(message = "{account.user.username.length}")
+    @NotBlank(message = "{account.user.username.NotBlank.message}")
+    @Length(min = 6, max = 20, message = "{account.user.username.Length.message}")
     @Column(length = 100, unique = true, nullable = false)
     @JsonView(WithoutPasswordJView.class)
     private String username;

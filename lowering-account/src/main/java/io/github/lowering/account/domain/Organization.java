@@ -1,8 +1,10 @@
 package io.github.lowering.account.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,9 +12,14 @@ import java.util.Set;
 @Table(name = "organizations")
 public class Organization extends Id {
 
+    @NotNull(message = "{account.organization.name.NotNull.message}")
+    @Length(min = 1,max = 200, message = "{account.organization.name.Length.message}")
     @Column(nullable = false,length = 200)
     @JsonView(WithoutRelationJView.class)
     private String name;    //组织名称
+
+    @NotNull(message = "{account.organization.constant.NotNull.message}")
+    @Length(min = 1,max = 200, message = "{account.organization.constant.Length.message}")
     @Column(unique = true,nullable = false,length = 200)
     @JsonView(WithoutRelationJView.class)
     private String constant;    //唯一键
@@ -25,6 +32,7 @@ public class Organization extends Id {
     @OneToMany(mappedBy = "parent")
     private Set<Organization> children = new HashSet<>();   //下属组织
 
+    @Length(message = "{account.organization.description.Length.message}")
     @Column(length = 300)
     @JsonView(WithoutRelationJView.class)
     private String description;

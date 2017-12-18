@@ -1,8 +1,10 @@
 package io.github.lowering.account.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,14 +12,23 @@ import java.util.Set;
 @Table(name = "authorities")
 public class Authority extends Id {
 
+    @NotNull(message = "{account.authority.name.NotNull.message}")
+    @Length(min = 1, max = 100, message = "{account.authority.name.Length.message}")
     @Column(nullable = false,length = 100)
     @JsonView(WithoutRelationJView.class)
     private String name;
+
+    @NotNull(message = "{account.authority.constant.NotNull.message}")
+    @Length(min = 1, max = 200, message = "{account.authority.constant.Length.message}")
     @Column(unique = true,nullable = false,length = 200)
     @JsonView(WithoutRelationJView.class)
     private String constant;
+
+    @NotNull(message = "{account.authority.enabled.NotNull.message}")
     @JsonView(WithoutRelationJView.class)
     private Boolean enabled;
+
+    @Length(max = 300, message = "{account.authority.description.Length.message}")
     @Column(length = 300)
     @JsonView(WithoutRelationJView.class)
     private String description;

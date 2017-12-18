@@ -1,8 +1,10 @@
 package io.github.lowering.account.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,19 +13,25 @@ import java.util.Set;
 public class Menu extends Id {
 
     //菜单名称
+    @NotNull(message = "{account.menu.name.NotNull.message}")
+    @Length(min = 1,max = 100, message = "{account.menu.name.Length.message}")
     @Column(nullable = false,length = 100)
     @JsonView(WithoutRelationJView.class)
     private String name;
     //链接地址
+    @NotNull(message = "{account.menu.href.NotNull.message}")
     @JsonView(WithoutRelationJView.class)
     private String href;
     //打开方式
+    @NotNull(message = "{account.menu.target.NotNull.message}")
     @JsonView(WithoutRelationJView.class)
     private String target;
     //是否显示
+    @NotNull(message = "{account.menu.shown.NotNull.message}")
     @JsonView(WithoutRelationJView.class)
     private Boolean shown;
     //描述
+    @Length(max = 300, message = "{account.menu.description.Length.message}")
     @Column(length = 300)
     @JsonView(WithoutRelationJView.class)
     private String description;
