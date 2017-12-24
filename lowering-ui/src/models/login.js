@@ -1,4 +1,4 @@
-import { login } from '../services/users.service';
+import { login } from '../services/login.service';
 import { isToken,storeToken,removeToken } from '../utils';
 import { routerRedux } from 'dva/router';
 
@@ -40,6 +40,7 @@ export default {
                 },
             });
             removeToken();
+            console.log('logout')
             yield put(routerRedux.push('/login'));
         }
     },

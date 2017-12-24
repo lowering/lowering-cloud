@@ -1,24 +1,28 @@
 import { routerRedux } from 'dva/router';
-import { isAuthenticated } from '../utils';
+import { routes } from '../routes';
+import { isAuthenticated } from "../utils";
 
 export default {
-
     namespace: 'global',
-
     state: {
-        collapsed: false
-    },
+        collapsed: false,
+        menus: routes,
+        authentication: {
+            name: '管理员',
+            avatar: ''
+        }
 
+    },
     subscriptions: {
-        setup({ dispatch, history }) {
-            return history.listen(({pathname})=>{
+        step({ dispatch, history }){
+            history.listen(({ pathname, search }) => {
                 if (!isAuthenticated()){
                     if (pathname !== '/login'){
                         dispatch(routerRedux.push({pathname:'/login'}));
                     }
                 }
-            })
-        },
+            });
+        }
     },
 
     effects: {
@@ -27,8 +31,10 @@ export default {
 
     reducers: {
         changeLayoutCollapsed(state, { payload }) {
-            return {...state, collapsed: payload};
+            return {
+                ...state,
+                collapsed: payload.collapsed,
+            };
         },
-    },
-
-};
+    }
+}
