@@ -1,63 +1,64 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Breadcrumb, Tabs } from 'antd';
+import styles from './index.less';
 
-import styles from './page.header.less';
-
-function getBreadcrumbNameWithParams(mapping, url) {
-    let name = '';
-    Object.keys(mapping).forEach((item) => {
-        const regexp = new RegExp(`^${item.replace(/:[\w-]+/g, '[\\w-]+')}$`);
-        if (regexp.test(url)) {
-            name = mapping[item];
+function getBreadcrumb(breadcrumbNameMap, url) {
+    if (breadcrumbNameMap[url]) {
+        return breadcrumbNameMap[url];
+    }
+    const urlWithoutSplash = url.replace(/\/$/, '');
+    if (breadcrumbNameMap[urlWithoutSplash]) {
+        return breadcrumbNameMap[urlWithoutSplash];
+    }
+    let breadcrumb = '';
+    Object.keys(breadcrumbNameMap).forEach((item) => {
+        const itemRegExpStr = `^${item.replace(/:[\w-]+/g, '[\\w-]+')}$`;
+        const itemRegExp = new RegExp(itemRegExpStr);
+        if (itemRegExp.test(url)) {
+            breadcrumb = breadcrumbNameMap[item];
         }
     });
-    return name;
+    return breadcrumb;
 }
 
-class PageHeader extends React.PureComponent {
-
-    constructor(props) {
-        super(props);
-        this.getBreadcrumbProps = this.getBreadcrumbProps.bind(this);
-        this.itemRender = this.itemRender.bind(this);
-    }
-
-    getBreadcrumbProps() {
-        return {
-            routes: this.props.routes || this.context.routes,
-            params: this.props.params || this.context.params,
-            location: this.props.location || this.context.location,
-            mapping: this.props.mapping || this.context.mapping
-        };
-    }
-
+export default class Overview extends React.PureComponent {
+    static contextTypes = {
+        routes: PropTypes.array,
+        params: PropTypes.object,
+        location: PropTypes.object,
+        mapping: PropTypes.object,
+    };
     onChange = (key) => {
         if (this.props.onTabChange) {
             this.props.onTabChange(key);
         }
     };
-
+    getBreadcrumbProps = () => {
+        return {
+            routes: this.props.routes || this.context.routes,
+            params: this.props.params || this.context.params,
+            location: this.props.location || this.context.location,
+            mapping: this.props.mapping || this.context.mapping,
+        };
+    };
     itemRender = (route, params, routes, paths) => {
         const { linkElement = 'a' } = this.props;
         const last = routes.indexOf(route) === routes.length - 1;
         return (last || !route.component)
             ? <span>{route.breadcrumbName}</span>
-            : createElement(linkElement, {
+            : React.createElement(linkElement, {
                 href: paths.join('/') || '/',
                 to: paths.join('/') || '/',
             }, route.breadcrumbName);
     }
-
     render() {
-        //获取基本的属性
         const { routes, params, location, mapping } = this.getBreadcrumbProps();
-        //从props中获取属性
-        const { title, logo, action, content, extra, breadcrumbs, tabs, link = 'a' } = this.props;
-        //定义面包屑
+        const {
+            title, logo, action, content, extraContent,
+            breadcrumbList, tabList, className, linkElement = 'a',
+        } = this.props;
         let breadcrumb;
-        //当有路由和参数的时候
         if (routes && params) {
             breadcrumb = (
                 <Breadcrumb
@@ -71,23 +72,22 @@ class PageHeader extends React.PureComponent {
             const pathSnippets = location.pathname.split('/').filter(i => i);
             const extraBreadcrumbItems = pathSnippets.map((_, index) => {
                 const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+                const currentBreadcrumb = getBreadcrumb(mapping, url);
+                const isLinkable = (index !== pathSnippets.length - 1) && currentBreadcrumb.component;
                 return (
                     <Breadcrumb.Item key={url}>
-                        {createElement(
-                            index === pathSnippets.length - 1 ? 'span' : link,
-                            { [link === 'a' ? 'href' : 'to']: url },
-                            mapping[url] ||
-                            mapping[url.replace('/', '')] ||
-                            getBreadcrumbNameWithParams(mapping, url) ||
-                            url
+                        {React.createElement(
+                            isLinkable ? linkElement : 'span',
+                            { [linkElement === 'a' ? 'href' : 'to']: url },
+                            currentBreadcrumb.name || url,
                         )}
                     </Breadcrumb.Item>
                 );
             });
             const breadcrumbItems = [(
                 <Breadcrumb.Item key="home">
-                    {createElement(link, {
-                        [link === 'a' ? 'href' : 'to']: '/',
+                    {React.createElement(linkElement, {
+                        [linkElement === 'a' ? 'href' : 'to']: '/',
                     }, '首页')}
                 </Breadcrumb.Item>
             )].concat(extraBreadcrumbItems);
@@ -96,15 +96,15 @@ class PageHeader extends React.PureComponent {
                     {breadcrumbItems}
                 </Breadcrumb>
             );
-        } else if (breadcrumbs && breadcrumbs.length) {
+        } else if (breadcrumbList && breadcrumbList.length) {
             breadcrumb = (
                 <Breadcrumb className={styles.breadcrumb}>
                     {
-                        breadcrumbs.map(item => (
+                        breadcrumbList.map(item => (
                             <Breadcrumb.Item key={item.title}>
                                 {item.href ? (
-                                    createElement(link, {
-                                        [link === 'a' ? 'href' : 'to']: item.href,
+                                    React.createElement(linkElement, {
+                                        [linkElement === 'a' ? 'href' : 'to']: item.href,
                                     }, item.title)
                                 ) : item.title}
                             </Breadcrumb.Item>)
@@ -115,11 +115,11 @@ class PageHeader extends React.PureComponent {
         } else {
             breadcrumb = null;
         }
-        //定义tab的默认值
-        const defaultValue = tabs && (tabs.filter(item => item.default)[0] || tabs[0]);
-        //渲染数据
+
+        const tabDefaultValue = tabList && (tabList.filter(item => item.default)[0] || tabList[0]);
+
         return (
-            <div className={styles['page-header']}>
+            <div className={[styles.overview, className].join(' ')}>
                 {breadcrumb}
                 <div className={styles.detail}>
                     {logo && <div className={styles.logo}>{logo}</div>}
@@ -130,33 +130,24 @@ class PageHeader extends React.PureComponent {
                         </div>
                         <div className={styles.row}>
                             {content && <div className={styles.content}>{content}</div>}
-                            {extra && <div className={styles['extra-content']}>{extra}</div>}
+                            {extraContent && <div className={styles.extraContent}>{extraContent}</div>}
                         </div>
                     </div>
                 </div>
                 {
-                    tabs &&
-                    tabs.length &&
+                    tabList &&
+                    tabList.length &&
                     <Tabs
                         className={styles.tabs}
-                        defaultActiveKey={(defaultValue && defaultValue.key)}
+                        defaultActiveKey={(tabDefaultValue && tabDefaultValue.key)}
                         onChange={this.onChange}
                     >
                         {
-                            tabs.map(item => <Tabs.TabPane tab={item.tab} key={item.key} />)
+                            tabList.map(item => <Tabs.TabPane tab={item.tab} key={item.key} />)
                         }
                     </Tabs>
                 }
             </div>
         );
     }
-};
-
-PageHeader.contextTypes = {
-    routes: PropTypes.array,
-    params: PropTypes.object,
-    location: PropTypes.object,
-    mapping: PropTypes.object,
 }
-
-export default PageHeader;

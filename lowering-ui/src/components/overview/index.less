@@ -1,8 +1,8 @@
 @import "~antd/lib/style/themes/default.less";
 
-.page-header {
+.overview {
     background: @component-background;
-    padding: 16px 16px 0;
+    padding: 16px 24px 0;
     border-bottom: @border-width-base @border-style-base @border-color-split;
 
     .detail {
@@ -61,7 +61,7 @@
         }
     }
 
-    .title, .action, .content, .extra-content, .main {
+    .title, .action, .content, .extraContent, .main {
         flex: auto;
     }
 
@@ -69,43 +69,43 @@
         margin-bottom: 16px;
     }
 
-    .logo, .content, .extra-content {
+    .logo, .content, .extraContent {
         margin-bottom: 16px;
     }
 
-    .action, .extra-content {
+    .action, .extraContent {
         text-align: right;
     }
 
-    .extra-content {
+    .extraContent {
         margin-left: 88px;
         min-width: 242px;
     }
 }
 
 @media screen and (max-width: @screen-xl) {
-    .page-header {
-        .extra-content {
+    .pageHeader {
+        .extraContent {
             margin-left: 44px;
         }
     }
 }
 
 @media screen and (max-width: @screen-lg) {
-    .page-header {
-        .extra-content {
+    .pageHeader {
+        .extraContent {
             margin-left: 20px;
         }
     }
 }
 
 @media screen and (max-width: @screen-md) {
-    .page-header {
+    .pageHeader {
         .row {
             display: block;
         }
 
-        .action, .extra-content {
+        .action, .extraContent {
             margin-left: 0;
             text-align: left;
         }
@@ -113,7 +113,7 @@
 }
 
 @media screen and (max-width: @screen-sm) {
-    .page-header {
+    .pageHeader {
         .detail {
             display: block;
         }
@@ -121,7 +121,7 @@
 }
 
 @media screen and (max-width: @screen-xs) {
-    .page-header {
+    .pageHeader {
         .action {
             :global {
                 .ant-btn-group, .ant-btn {
