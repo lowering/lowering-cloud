@@ -1,10 +1,8 @@
 import React from 'react';
 import {connect} from 'dva';
-import {withRouter} from 'dva/router';
 import { Table, Card, Badge } from 'antd';
-import mixin from '../../utils/mixin';
-import PageLayout from '../../layouts/page.layout';
-import RolesModel from '../../models/roles';
+
+import OverviewLayout from '../../layouts/overview.layout';
 
 
 class Roles extends React.PureComponent {
@@ -43,13 +41,13 @@ class Roles extends React.PureComponent {
         let {roles} = this.props;
 
         return (
-            <PageLayout title="角色管理" content="用于提供对角色的各种操作。">
+            <OverviewLayout title="角色管理" content="用于提供对角色的各种操作。">
                 <Card bordered={false}>
                     <Table dataSource={roles.roles} columns={columns} rowKey='id'/>
                 </Card>
-            </PageLayout>
+            </OverviewLayout>
         )
     }
 }
 
-export default withRouter(connect(({roles})=>({roles}))(mixin([RolesModel],Roles)));
+export default connect(({roles})=>({roles}))(Roles);
