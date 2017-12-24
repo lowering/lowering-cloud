@@ -8,16 +8,16 @@
     "install-node": "6.11.1"
   },
   "dependencies": {
-    "antd": "^3.0.0",
-    "babel-plugin-import": "^1.6.2",
+    "antd": "^3.0.2",
+    "babel-plugin-import": "^1.6.3",
     "babel-runtime": "^6.9.2",
-    "dva": "^2.1.0",
-    "jquery": "^1.8.0",
+    "dva": "^2.0.0",
+    "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "lodash.clonedeep": "^4.5.0",
+    "prop-types": "^15.6.0",
     "qs": "^6.5.1",
     "react": "^16.0.0",
-    "react-document-title": "^2.0.3",
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
     "expect": "^1.20.2",
     "husky": "^0.12.0",
     "redbox-react": "^1.4.3",
-    "roadhog": "^1.2.1"
+    "roadhog": "^1.2.1",
+    "sqlite3": "^3.1.13"
   }
 }
