@@ -2,7 +2,7 @@ import { ajax,BASE_URL } from '../utils';
 import qs from 'qs';
 
 export async function login(params){
-    return ajax(`${BASE_URL}/account/oauth/token`,{
+    return ajax(`${BASE_URL}/account/oauth/login`,{
         method: 'POST',
         headers: {
             "Authorization": "Basic dWk6dWk=",
