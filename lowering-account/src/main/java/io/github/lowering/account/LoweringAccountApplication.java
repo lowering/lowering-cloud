@@ -52,6 +52,7 @@ public class LoweringAccountApplication {
 	protected static class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		private static final Logger logger = LoggerFactory.getLogger(io.github.lowering.account.LoweringAccountApplication.WebSecurityConfiguration.class);
 
+
 		@Autowired
 		private UserDetailsService userDetailsService;
 
@@ -86,6 +87,7 @@ public class LoweringAccountApplication {
 	protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 		private static final Logger logger = LoggerFactory.getLogger(io.github.lowering.account.LoweringAccountApplication.AuthorizationServerConfiguration.class);
 
+
 		@Autowired
 		private AuthenticationManager authenticationManager;
 
@@ -99,12 +101,17 @@ public class LoweringAccountApplication {
 
 		@Override
 		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-			endpoints.authenticationManager(authenticationManager).userDetailsService(userDetailsService);
+			endpoints
+					.pathMapping("/oauth/token","/oauth/login")
+					.authenticationManager(authenticationManager)
+					.userDetailsService(userDetailsService);
 		}
 
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-			security.checkTokenAccess("isAuthenticated()").tokenKeyAccess("permitAll()");
+			security
+					.checkTokenAccess("isAuthenticated()")
+					.tokenKeyAccess("permitAll()");
 		}
 
 		@Override
@@ -112,7 +119,7 @@ public class LoweringAccountApplication {
 			clients.inMemory()
 					.withClient("ui")
 					.secret("ui")
-					.authorizedGrantTypes("authorization_code","refresh_token", "password")
+					.authorizedGrantTypes("refresh_token", "password")
 					.scopes("ui")
 					.and()
 					.withClient("account")
