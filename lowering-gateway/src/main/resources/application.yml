@@ -36,11 +36,11 @@ security:
     client:
       client-id: gateway
       client-secret: gateway
-      access-token-uri: http://localhost:8102/account/oauth/token
+      access-token-uri: http://localhost:8102/account/oauth/login
       scope: server
 
     resource:
-      user-info-uri: http://localhost:8102/account/me
+      user-info-uri: http://localhost:8102/account/oauth/me
 
     
     
