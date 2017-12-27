@@ -1,5 +1,6 @@
 package io.github.lowering;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -15,6 +16,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
+import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -48,7 +52,7 @@ public class LoweringGatewayApplication {
 
 		@Override
 		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/webjars/**");
+			web.ignoring().antMatchers("/webjars/**","/**/favicon.ico");
 		}
 
 	}
@@ -57,12 +61,13 @@ public class LoweringGatewayApplication {
 	@EnableResourceServer
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 2)
 	protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
 			http
 					.authorizeRequests()
                     .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-					.antMatchers("/","/account/**","/webjars/**").permitAll()
+					.antMatchers("/","/account/**","/webjars/**","/**/favicon.ico").permitAll()
 					.anyRequest().authenticated();
 		}
 	}
