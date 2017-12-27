@@ -9,7 +9,18 @@ dynamic.setDefaultLoadingComponent(() => {
 });
 
 function mixin(app,models,component){
-    return dynamic({app, models:()=>models, component: component});
+    return dynamic({
+        app,
+        models:()=>models,
+        component: () => {
+            const promise = component();
+            return new Promise((resolve, reject) => {
+                promise.then((Component) => {
+                    resolve(props => <Component {...props} />);
+                }).catch(err => reject(err));
+            });
+        }
+    });
 }
 
 function RouterConfig({app, history }) {
