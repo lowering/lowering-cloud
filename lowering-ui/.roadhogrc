@@ -9,6 +9,8 @@
       ]
     },
     "production": {
+      "publicPath": "/webjars/",
+      "outputPath": "./dist/webjars",
       "extraBabelPlugins": [
         "transform-runtime",
         ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]

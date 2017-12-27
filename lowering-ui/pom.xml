@@ -19,7 +19,7 @@
 
 	<properties>
 		<destDir>${project.build.outputDirectory}/META-INF/resources/webjars/</destDir>
-		<distDir>${project.basedir}/dist</distDir>
+		<distDir>${project.basedir}/dist/webjars/</distDir>
 	</properties>
 
 	<profiles>
@@ -43,7 +43,7 @@
         <profile>
             <id>Build</id>
             <properties>
-                <npm>npm</npm>
+                <npm>npm.cmd</npm>
                 <skip>true</skip>
             </properties>
         </profile>
@@ -111,6 +111,7 @@
 								<copy todir="${destDir}">
                                     <fileset dir="${distDir}" includes="*.js"/>
                                     <fileset dir="${distDir}" includes="*.css"/>
+                                    <fileset dir="${distDir}" includes="static/*"/>
 								</copy>
 							</target>
 						</configuration>
