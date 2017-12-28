@@ -11,7 +11,7 @@ dynamic.setDefaultLoadingComponent(() => {
 function mixin(app,models,component){
     return dynamic({
         app,
-        models:()=>models,
+        models:() => models,
         component: () => {
             const promise = component();
             return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ function RouterConfig({app, history }) {
 
     const Login = mixin(app,[import('./models/login')],()=>import('./routes/login'));
 
-    const GeneralLayout = mixin(app,[import('./models/login')],()=>import('./layouts/general.layout'));
+    const GeneralLayout = mixin(app,[import('./models/global'),import('./models/login')],()=>import('./layouts/general.layout'));
 
     return (
         <LocaleProvider locale={zhCN}>
