@@ -53,7 +53,7 @@ class GeneralLayout extends React.PureComponent {
 
     render () {
 
-        const { collapsed, location, dispatch, menus, authentication, mixin, app } = this.props;
+        const { collapsed = false, location, dispatch, menus, authentication, mixin, app } = this.props;
         return (
             <Wrapper>
                 <Layout>
@@ -115,8 +115,10 @@ class GeneralLayout extends React.PureComponent {
     }
 }
 
-export default connect(state => ({
-    collapsed: state.global.collapsed,
-    menus: state.global.menus,
-    authentication: state.global.authentication
-}))(GeneralLayout);
+export default connect(state => {
+    return {
+        collapsed: state.global.collapsed,
+        menus: state.global.menus,
+        authentication: state.global.authentication
+    }
+})(GeneralLayout);
