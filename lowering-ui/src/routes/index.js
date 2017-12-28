@@ -30,6 +30,7 @@ export const routes = [{
         name: "用户管理",
         constant: '',
         path: "users",
+        icon: "user",
         target: "_self",
         shown: true,
         description: "提供用户管理相关操作",
