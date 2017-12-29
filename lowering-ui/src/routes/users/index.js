@@ -2,12 +2,31 @@ import React from 'react';
 import { connect } from 'dva';
 import OverviewLayout from '../../layouts/overview.layout';
 import { Card, Table, Badge } from 'antd';
+import Details from './details';
 
 class Users extends React.PureComponent {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            id: undefined
+        }
+    }
 
     componentDidMount(){
         const {dispatch} = this.props;
         dispatch({type:"users/findAll"});
+    }
+
+    details = ({id})=>{
+        this.setState({
+            id
+        })
+    };
+    test = ()=>{
+        this.setState({
+           a:'123'
+        })
     }
 
     render() {
@@ -16,6 +35,9 @@ class Users extends React.PureComponent {
             title: '姓名',
             dataIndex: 'username',
             key: 'username',
+            render: (text, row)=>{
+                return (<Details data={row} />);
+            }
         }, {
             title: '性别',
             dataIndex: 'sex',
@@ -49,7 +71,4 @@ class Users extends React.PureComponent {
         )
     }
 }
-export default connect(state=>{
-    console.log(state);
-    return {users:state.users}
-})(Users);
+export default connect(({users})=>({users}))(Users);
