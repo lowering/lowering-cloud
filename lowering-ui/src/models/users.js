@@ -5,7 +5,8 @@ export default {
     namespace: 'users',
 
     state: {
-        users:[]
+        users:[],
+        details: undefined
     },
 
     subscriptions: {
@@ -24,10 +25,16 @@ export default {
                 }
             })
         },
+        *findOne({payload}, { call, put }){
+
+        }
     },
 
     reducers: {
         findAllSuccess(state, action) {
+            return { ...state, ...action.payload };
+        },
+        findOneSuccess(state, action) {
             return { ...state, ...action.payload };
         }
     },
