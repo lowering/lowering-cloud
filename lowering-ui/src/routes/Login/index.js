@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
-import Footer from '../../components/footer';
-import Wrapper from '../../components/wrapper';
+import Footer from '../../components/Footer';
+import Wrapper from '../../components/Wrapper';
 import logo from '../../assets/logo.svg';
 import styles from './index.less';
 

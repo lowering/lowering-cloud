@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import OverviewLayout from '../../layouts/overview.layout';
-import { Card, Table, Badge } from 'antd';
+import { Card, Table, Badge, Button, Popconfirm, Icon, Divider } from 'antd';
 import Details from './details';
 
 class Users extends React.PureComponent {
@@ -23,11 +23,6 @@ class Users extends React.PureComponent {
             id
         })
     };
-    test = ()=>{
-        this.setState({
-           a:'123'
-        })
-    }
 
     render() {
 
@@ -35,8 +30,8 @@ class Users extends React.PureComponent {
             title: '姓名',
             dataIndex: 'username',
             key: 'username',
-            render: (text, row)=>{
-                return (<Details data={row} />);
+            render: (text, {id})=>{
+                return (<Details id={id} text={text}/>);
             }
         }, {
             title: '性别',
@@ -48,16 +43,36 @@ class Users extends React.PureComponent {
             key: 'email',
         }, {
             title: '状态',
-            render (row) {
-                if (row.enabled) {
-                    return (<Badge status="success" text="启用" />);
-                }
-                return (<Badge status="error" text="禁用" />);
+            render ({locked,enabled}) {
+                return (
+                    <div>
+                        {locked ? <Badge status="error" text="锁定" /> : <Badge status="success" text="解锁" />}
+                        <Divider type="vertical" />
+                        {enabled ? <Badge status="success" text="启用" /> : <Badge status="error" text="禁用" />}
+                    </div>
+                );
             }
         }, {
             title: '备注',
             dataIndex: 'description',
             key: 'description',
+        }, {
+            title: '操作',
+            render: ()=>{
+                return (
+                    <div>
+                        <Button size="small">
+                            <Icon type="edit"/>修改
+                        </Button>
+                        <Divider type="vertical" />
+                        <Popconfirm title="确认删除?" cancelText="取消" okText="确认">
+                            <Button type="danger" size="small">
+                                <Icon type="delete" />删除
+                            </Button>
+                        </Popconfirm>
+                    </div>
+                );
+            }
         }];
 
         let { users } = this.props;

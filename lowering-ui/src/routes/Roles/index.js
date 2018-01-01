@@ -3,6 +3,7 @@ import {connect} from 'dva';
 import { Table, Card, Badge } from 'antd';
 
 import OverviewLayout from '../../layouts/overview.layout';
+import Details from './details';
 
 
 class Roles extends React.PureComponent {
@@ -18,6 +19,9 @@ class Roles extends React.PureComponent {
             title: '角色名',
             dataIndex: 'rolename',
             key: 'rolename',
+            render: (text,row)=>{
+                return <Details text={text} />
+            }
         }, {
             title: '唯一键(KEY)',
             dataIndex: 'constant',

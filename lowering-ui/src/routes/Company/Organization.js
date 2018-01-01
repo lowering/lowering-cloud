@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Card, Table, Divider, Button, Popconfirm } from 'antd';
 import OverviewLayout from "../../layouts/overview.layout";
+import OrganizationDetails from './OrganizationDetails';
 
 class Organization extends React.PureComponent {
 
@@ -16,9 +17,8 @@ class Organization extends React.PureComponent {
             dataIndex: 'name',
             key: 'name',
             render (_,{id,name}){
-                console.log(arguments);
                 return (
-                    <a href={`${id}`}>{name}</a>
+                    <OrganizationDetails text={name} id={id} />
                 );
             }
         }, {

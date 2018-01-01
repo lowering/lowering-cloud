@@ -8,10 +8,10 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import { getPlainNode } from '../utils';
 
-import ASide from '../components/aside';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import Wrapper from '../components/wrapper';
+import ASide from '../components/ASide';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Wrapper from '../components/Wrapper';
 
 //import Wrapper1 from '/src/components/wrapper';
 

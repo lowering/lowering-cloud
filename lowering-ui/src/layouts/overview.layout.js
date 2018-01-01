@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'dva/router';
-import Overview from '../components/overview';
+import Overview from '../components/Overview';
 import styles from './overview.layout.less';
 
 export default ({ children, wrapperClassName, top, ...restProps }) => (

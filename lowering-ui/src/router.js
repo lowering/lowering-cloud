@@ -30,7 +30,7 @@ function RouterConfig({app, history }) {
         mixin
     };
 
-    const Login = mixin(app,[import('./models/login')],()=>import('./routes/login'));
+    const Login = mixin(app,[import('./models/login')],()=>import('./routes/Login'));
 
     const GeneralLayout = mixin(app,[import('./models/global'),import('./models/login')],()=>import('./layouts/general.layout'));
 

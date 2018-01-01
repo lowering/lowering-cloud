@@ -15,7 +15,7 @@ export const routes = [{
     shown: true,
     description: "提供个人的工作台",
     models: [],
-    component: ()=>import('./dashboard')
+    component: ()=>import('./Dashboard')
 }, {
     id: uuid(),
     name: "系统设置",
@@ -35,7 +35,7 @@ export const routes = [{
         shown: true,
         description: "提供用户管理相关操作",
         models: [import('../models/users')],
-        component: ()=>import('./users')
+        component: ()=>import('./Users')
     }, {
         id: uuid(),
         name: "角色管理",
@@ -45,7 +45,7 @@ export const routes = [{
         shown: true,
         description: "提供角色管理相关操作",
         models: [import('../models/roles')],
-        component: ()=>import('./roles')
+        component: ()=>import('./Roles')
     }, {
         id: uuid(),
         name: "资源管理",
@@ -55,7 +55,7 @@ export const routes = [{
         shown: true,
         description: "提供菜单和权限管理相关操作",
         models:[import('../models/menus')],
-        component: ()=>import('./menus')
+        component: ()=>import('./Menus')
     }]
 }, {
     id: uuid(),
@@ -74,7 +74,7 @@ export const routes = [{
         shown: true,
         description: "提供组织管理相关操作",
         models: [import('../models/organization')],
-        component: ()=>import('./company/organization')
+        component: ()=>import('./Company/Organization')
     }, {
         id: uuid(),
         name: "部门管理",
@@ -84,7 +84,7 @@ export const routes = [{
         shown: true,
         description: "提供部门管理相关操作",
         models: [import('../models/department')],
-        component: ()=>import('./company/department')
+        component: ()=>import('./Company/Department')
     }, {
         id: uuid(),
         name: "员工管理",
@@ -94,6 +94,6 @@ export const routes = [{
         shown: true,
         description: "提供员工管理相关操作",
         models: [import('../models/employee')],
-        component: ()=>import('./company/employee')
+        component: ()=>import('./Company/Employee')
     }]
 }];

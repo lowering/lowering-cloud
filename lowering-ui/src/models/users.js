@@ -1,4 +1,7 @@
-import {findAll} from '../services/users.service';
+import {
+    findAll,
+    findOne
+} from '../services/users.service';
 
 export default {
 
@@ -6,7 +9,8 @@ export default {
 
     state: {
         users:[],
-        details: undefined
+        details: undefined,
+        detailsLoading:false
     },
 
     subscriptions: {
@@ -26,7 +30,16 @@ export default {
             })
         },
         *findOne({payload}, { call, put }){
-
+            yield put({type:'findOneLoading',payload:{detailsLoading:true}});
+            const { id } = payload;
+            let data = yield call(findOne,id);
+            yield put({type:'findOneLoading',payload:{detailsLoading:false}});
+            yield put({
+                type:'findOneSuccess',
+                payload:{
+                    details: data
+                }
+            })
         }
     },
 
@@ -36,6 +49,9 @@ export default {
         },
         findOneSuccess(state, action) {
             return { ...state, ...action.payload };
+        },
+        findOneLoading(state, action) {
+            return { ...state, ...action.payload }
         }
     },
 

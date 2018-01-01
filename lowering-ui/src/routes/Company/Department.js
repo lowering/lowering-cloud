@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Card, Table, Button, Menu, Dropdown, Icon } from 'antd';
 import OverviewLayout from "../../layouts/overview.layout";
-import Descriptions from '../../components/descriptions';
+import Descriptions from '../../components/Descriptions';
 
 
 const menu = (
