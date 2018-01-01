@@ -39,4 +39,11 @@ public class UserController {
         return new CommonResult<>(100200,user.getId());
     }
 
+    @GetMapping(value = "/{id}")
+    @JsonView(User.WithoutPasswordJView.class)
+    public User findOne(@PathVariable("id") String id) throws InterruptedException {
+        Thread.sleep(300);
+        return this.userService.findOne(id);
+    }
+
 }
