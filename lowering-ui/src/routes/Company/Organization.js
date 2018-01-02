@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Card, Table, Divider, Button, Popconfirm } from 'antd';
-import OverviewLayout from "../../layouts/overview.layout";
+import OverviewLayout from "../../layouts/OverviewLayout";
 import OrganizationDetails from './OrganizationDetails';
 
 class Organization extends React.PureComponent {

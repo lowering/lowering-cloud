@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Card, Table } from 'antd';
-import OverviewLayout from "../../layouts/overview.layout";
+import OverviewLayout from "../../layouts/OverviewLayout";
 
 class Employee extends React.PureComponent {
 
