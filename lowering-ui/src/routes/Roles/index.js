@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'dva';
 import { Table, Card, Badge } from 'antd';
 
-import OverviewLayout from '../../layouts/overview.layout';
+import OverviewLayout from '../../layouts/OverviewLayout';
 import Details from './details';
 
 

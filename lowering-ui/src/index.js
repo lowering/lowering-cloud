@@ -1,8 +1,11 @@
 import dva from 'dva';
+import { error as onError } from './utils';
 import './index.less';
 
 // 1. Initialize
-const app = dva();
+const app = dva({
+    onError
+});
 
 // 2. Plugins
 // app.use({});

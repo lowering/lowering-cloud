@@ -202,7 +202,7 @@ export function promise(url, options = {}) {
  */
 export function ajax(url,options) {
     let promise = fetch(url,options);
-    return promise.then(checkStatus).then(parseJSON).then(data => data).catch(err => ({err}));
+    return promise.then(checkStatus).then(parseJSON).then(data => data).catch((error)=>{throw new Error(error);});
 }
 
 /**
@@ -216,5 +216,9 @@ export function uuid() {
         let uuid = matchs === 'x' ? random : (random&0x3|0x8);
         return uuid.toString(16);
     });
+}
+
+export function error(e,dispatch) {
+    console.log(e.name)
 }
 

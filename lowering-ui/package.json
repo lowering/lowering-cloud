@@ -11,7 +11,6 @@
     "antd": "^3.0.2",
     "babel-plugin-import": "^1.6.3",
     "babel-runtime": "^6.9.2",
-    "classnames": "^2.2.5",
     "dva": "^2.0.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
@@ -19,8 +18,7 @@
     "prop-types": "^15.6.0",
     "qs": "^6.5.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-motion": "^0.5.2"
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "babel-plugin-dva-hmr": "^0.3.2",

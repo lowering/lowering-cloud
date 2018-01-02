@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import OverviewLayout from '../../layouts/overview.layout';
+import OverviewLayout from '../../layouts/OverviewLayout';
 import { Card, Table, Badge, Button, Popconfirm, Icon, Divider } from 'antd';
 import Details from './details';
 

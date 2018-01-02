@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Card, Table, Badge, Row, Col, Tree, Icon, Button, Dropdown, Menu, Divider } from 'antd';
-import OverviewLayout from "../../layouts/overview.layout";
+import OverviewLayout from "../../layouts/OverviewLayout";
 import Items from './items';
 
 

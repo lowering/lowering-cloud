@@ -1,6 +1,5 @@
 import React from 'react';
-import OverviewLayout from '../../layouts/overview.layout';
-import Drawer from '../../components/Drawer/index';
+import OverviewLayout from '../../layouts/OverviewLayout';
 
 export default class Dashboard extends React.PureComponent {
 

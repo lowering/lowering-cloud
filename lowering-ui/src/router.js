@@ -32,7 +32,7 @@ function RouterConfig({app, history }) {
 
     const Login = mixin(app,[import('./models/login')],()=>import('./routes/Login'));
 
-    const GeneralLayout = mixin(app,[import('./models/global'),import('./models/login')],()=>import('./layouts/general.layout'));
+    const GeneralLayout = mixin(app,[import('./models/global'),import('./models/login')],()=>import('./layouts/GeneralLayout'));
 
     return (
         <LocaleProvider locale={zhCN}>
