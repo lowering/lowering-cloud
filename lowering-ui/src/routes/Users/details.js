@@ -24,7 +24,7 @@ class Details extends React.PureComponent {
             >
                 <Tabs>
                     <Tabs.TabPane tab="用户信息" key="1">
-                        <Card>
+                        <Card bordered={false}>
                             <Descriptions size="large" title="用户详细信息">
                                 <Descriptions.Description term="用户名">{username}</Descriptions.Description>
                                 <Descriptions.Description term="性别">{sex}</Descriptions.Description>
