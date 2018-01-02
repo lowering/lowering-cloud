@@ -1,13 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
 import { Col } from 'antd';
 import styles from './index.less';
 import responsive from './responsive';
 
-const Description = ({ term, column, className, children, ...rest }) => {
-    const classes = classNames(styles.description, className);
+const Description = ({ term, column, className = '', children, ...rest }) => {
     return (
-        <Col className={classes} {...responsive[column]} {...rest}>
+        <Col className={[styles.description,className].join(' ')} {...responsive[column]} {...rest}>
             {term && <div className={styles.term}>{term}</div>}
             {children && <div className={styles.detail}>{children}</div>}
         </Col>
