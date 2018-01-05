@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
+import { routerRedux } from 'dva/router';
 import { Card, Table, Badge, Row, Col, Tree, Icon, Button, Dropdown, Menu, Divider } from 'antd';
 import OverviewLayout from "../../layouts/OverviewLayout";
 import Items from './items';
@@ -16,8 +17,14 @@ class Menus extends React.PureComponent {
     addMenu = (id)=>{
         console.log(id);
     };
+
     deleteMenu = (id)=>{
         console.log(id);
+    };
+
+    save = ()=>{
+        const { dispatch, to } = this.props;
+        dispatch(routerRedux.push('/setting/menus/save'));
     };
 
 
@@ -125,28 +132,8 @@ class Menus extends React.PureComponent {
             }]
         }];
 
-
-
-        const action = (
-            <div>
-                <Button type="primary" icon="plus" onClick={this.addMenu}>添加菜单</Button>
-                <Button.Group>
-                    <Button type="danger" icon="delete">删除菜单</Button>
-                    <Dropdown overlay={
-                        <Menu>
-                            <Menu.Item key="1">选项一</Menu.Item>
-                            <Menu.Item key="2">选项二</Menu.Item>
-                            <Menu.Item key="3">选项三</Menu.Item>
-                        </Menu>
-                    } placement="bottomRight">
-                        <Button><Icon type="ellipsis" /></Button>
-                    </Dropdown>
-                </Button.Group>
-            </div>
-        );
-
         return (
-            <OverviewLayout title="资源管理" action={action}>
+            <OverviewLayout title="资源管理" action={<Button type="primary" icon="plus" onClick={this.save}>添加菜单</Button>}>
                 <Row gutter={16}>
                     <Col span={12}>
                         <Card bordered={false}>
