@@ -1,4 +1,4 @@
-import {findAll} from '../services/roles.service';
+import {findAll} from '../services/RolesService';
 
 export default {
 

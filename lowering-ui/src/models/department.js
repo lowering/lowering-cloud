@@ -1,4 +1,4 @@
-import { findAll } from '../services/department.service';
+import { findAll } from '../services/DepartmentService';
 
 export default {
 

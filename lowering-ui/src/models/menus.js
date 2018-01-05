@@ -1,4 +1,4 @@
-import {findAll} from '../services/menus.service';
+import {findAll} from '../services/MenusService';
 
 export default {
 

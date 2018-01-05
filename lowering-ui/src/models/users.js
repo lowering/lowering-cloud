@@ -1,7 +1,7 @@
 import {
     findAll,
     findOne
-} from '../services/users.service';
+} from '../services/UsersService';
 
 export default {
 

@@ -1,4 +1,4 @@
-import { findAll } from '../services/organization.service';
+import { findAll } from '../services/OrganizationService';
 
 export default {
 

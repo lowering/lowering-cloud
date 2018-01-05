@@ -1,4 +1,4 @@
-import { login } from '../services/login.service';
+import { login } from '../services/LoginService';
 import { isToken,storeToken,removeToken } from '../utils';
 import { routerRedux } from 'dva/router';
 
