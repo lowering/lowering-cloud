@@ -54,8 +54,27 @@ export const routes = [{
         target: "_self",
         shown: true,
         description: "提供菜单和权限管理相关操作",
-        models:[import('../models/menus')],
-        component: ()=>import('./Menus')
+        children: [{
+            id: uuid(),
+            name: "资源列表",
+            constant: '',
+            path: "list",
+            target: "_self",
+            shown: true,
+            description: "提供菜单和权限管理相关操作",
+            models:[import('../models/menus')],
+            component: ()=>import('./Menus'),
+        },{
+            id: uuid(),
+            name: "添加资源",
+            constant: '',
+            path: "save",
+            target: "_self",
+            shown: true,
+            description: "提供菜单和权限管理相关操作",
+            models:[import('../models/menus')],
+            component: ()=>import('./Menus/save')
+        }]
     }]
 }, {
     id: uuid(),
