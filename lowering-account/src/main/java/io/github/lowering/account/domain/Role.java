@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "account_roles")
 public class Role extends Id {
 
     @NotBlank(message = "{account.role.constant.NotBlank.message}")
@@ -38,7 +38,7 @@ public class Role extends Id {
 
     @ManyToMany
     @JoinTable(
-            name = "roles_menus",
+            name = "account_roles_menus",
             joinColumns = {
                     @JoinColumn(name = "role_id")
             },
@@ -50,7 +50,7 @@ public class Role extends Id {
 
     @ManyToMany
     @JoinTable(
-            name = "roles_authorities",
+            name = "account_roles_authorities",
             joinColumns = {
                     @JoinColumn(name = "role_id")
             },
@@ -59,6 +59,18 @@ public class Role extends Id {
             }
     )
     private Set<Authority> authorities = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "accounts_roles_routes",
+            joinColumns = {
+                    @JoinColumn(name = "role_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "route_id")
+            }
+    )
+    private Set<Route> routes = new HashSet<>();
 
     public String getConstant() {
         return constant;
@@ -114,5 +126,13 @@ public class Role extends Id {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public Set<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(Set<Route> routes) {
+        this.routes = routes;
     }
 }

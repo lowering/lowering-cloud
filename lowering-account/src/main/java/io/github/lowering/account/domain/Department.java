@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "account_departments")
 public class Department extends Id {
 
     @NotNull(message = "{account.department.name.NotNull.message}")

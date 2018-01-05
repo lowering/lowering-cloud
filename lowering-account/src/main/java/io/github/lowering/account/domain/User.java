@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "account_users")
 public class User extends Id {
     //没有密码的视图
     public interface WithoutPasswordJView extends JView {};
@@ -57,7 +57,7 @@ public class User extends Id {
 
     @ManyToMany
     @JoinTable(
-            name = "users_roles",
+            name = "account_users_roles",
             joinColumns = {
                     @JoinColumn(name = "user_id")
             },

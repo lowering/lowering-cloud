@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "authorities")
+@Table(name = "account_authorities")
 public class Authority extends Id {
 
     @NotNull(message = "{account.authority.name.NotNull.message}")

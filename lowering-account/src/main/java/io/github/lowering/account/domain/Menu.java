@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "menus")
+@Table(name = "account_menus")
 public class Menu extends Id {
 
     //菜单名称
